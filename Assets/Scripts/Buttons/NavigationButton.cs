@@ -30,7 +30,6 @@ namespace Buttons {
     protected override void OnClick(NavigationType type) {
       base.OnClick(type);
       ScrollPanel.Swipe?.Invoke(type);
-      GameManager.SetCurrentPanelType(type);
     }
   }
 }

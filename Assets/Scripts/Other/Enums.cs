@@ -20,6 +20,7 @@
     public enum PanelWindow {
       AddNote,
       OpenNote,
+      OpenDeletedNote,
       EditNote
     }
   }

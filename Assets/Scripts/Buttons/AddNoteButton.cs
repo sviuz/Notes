@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Buttons {
+  [RequireComponent(typeof(Button))]
   public class AddNoteButton : MonoBehaviour {
     private Button _addNoteButton;
 

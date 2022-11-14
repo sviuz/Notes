@@ -1,4 +1,5 @@
 ﻿using Notes;
+using Other;
 using Time;
 using TMPro;
 using UnityEngine;
@@ -30,12 +31,21 @@ namespace Panels.Base {
       _createNoteButton.onClick.AddListener(AddNote);
       _closePanelButton.onClick.AddListener(ClosePanelButtonClick);
       _editButton.onClick.AddListener(SetEditNote);
+      _saveEditNoteButton.onClick.AddListener(SaveEditNoteButtonClick);
+    }
+
+    private void SaveEditNoteButtonClick() {
+      NoteData noteData = new NoteData(_inputNoteNameText.text,
+        _inputNoteDescriptionText.text, TimeGetter.GetNoteTime?.Invoke());
+
     }
 
     private void AddNote() {
-      NoteData noteData =
-        new(_inputNoteNameText.text, _inputNoteDescriptionText.text, TimeGetter.GetNoteTime?.Invoke());
-      NotesScrollPanel.AddNote.Invoke(noteData);
+      NoteData noteData = new NoteData(IdGenerator.GenerateId(), _inputNoteNameText.text,
+        _inputNoteDescriptionText.text, TimeGetter.GetNoteTime?.Invoke());
+
+      NotesManager.AddNote.Invoke(noteData);
+      TopBar.UpdateText?.Invoke();
 
       ClearInputFields();
       ShowPanel(false);
@@ -43,7 +53,6 @@ namespace Panels.Base {
 
     private void ClosePanelButtonClick() {
       ShowPanel(false);
-      // ClearInputFields();
     }
 
     public void Show() {
@@ -77,7 +86,7 @@ namespace Panels.Base {
       _createNoteButton.gameObject.SetActive(false);
     }
 
-    protected void SetNoteData(NoteData noteData) {
+    protected void SetNoteData (NoteData noteData) {
       _inputNoteNameText.text = noteData.PreviewText;
       _inputNoteDescriptionText.text = noteData.DescriptionText;
     }

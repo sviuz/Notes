@@ -1,13 +1,4 @@
-﻿using Buttons;
-using static Other.Enums;
+﻿using UnityEngine;
 
-public static class GameManager {
-  private static NavigationType _currentPanel;
-  public static NavigationType GetCurrentPanelType => _currentPanel;
-
-  
-  
-  public static void SetCurrentPanelType(NavigationType type) {
-    _currentPanel = type;
-  }
+public class GameManager : MonoBehaviour {
 }
